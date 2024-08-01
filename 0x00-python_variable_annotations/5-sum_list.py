@@ -6,7 +6,9 @@ sum as a float.
 """
 
 
-def sum_list(input_list: list[float]) -> float:
+from typing import List
+
+def sum_list(input_list: List[float]) -> float:
     """type-annotated sum_list function"""
     sum: float = 0
     for i in input_list:
