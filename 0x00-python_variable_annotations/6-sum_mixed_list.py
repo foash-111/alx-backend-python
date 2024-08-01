@@ -6,9 +6,10 @@ their sum as a float.
 """
 
 
-def sum_mixed_list(mxd_lst: list[int, float]) -> float:
-    """type-annotated function sum_mixed_list"""
-    sum: float = 0
-    for i in mxd_lst:
-        sum += i
-    return sum
+if __name__ == "__main__":
+    def sum_mixed_list(mxd_lst: list[int, float]) -> float:
+        """type-annotated function sum_mixed_list"""
+        sum: float = 0
+        for i in mxd_lst:
+            sum += i
+        return sum
