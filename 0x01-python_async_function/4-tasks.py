@@ -2,12 +2,15 @@
 """wait_random n times"""
 
 import asyncio
-from typing import Callable
-wait_random = __import__('0-basic_async_syntax').wait_random
+from typing import List
+task_wait_random = __import__('3-tasks').task_wait_random
+from time import perf_counter
 
-
-async def task_wait_n(n: int, max_delay: int) -> Callable:
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """return a list of length n, filled by max_delay range"""
-    my_list = [wait_random(max_delay) for x in range(n)]
+    # start = perf_counter()
+    my_list = [task_wait_random(max_delay) for x in range(n)]
     result = await asyncio.gather(*my_list)
+    # end = perf_counter()
+    # print(end - start)
     return result

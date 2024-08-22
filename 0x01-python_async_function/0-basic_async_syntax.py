@@ -17,12 +17,15 @@ import asyncio
 # ValueError: a coroutine was expected, got 0.8911870374978059
 # def wait_random(max_delay = 10):
 
+# delay = await random.uniform(0, max_delay)
+# TypeError: object float can't be used in 'await' expression
+
+# asyncio.sleep(delay)
+# RuntimeWarning: coroutine 'sleep' was never awaited asyncio.sleep(delay)
+
+
 async def wait_random(max_delay: int = 10) -> float:
     """using random with await async.sleep()"""
-    # delay = await random.uniform(0, max_delay)
-    # TypeError: object float can't be used in 'await' expression
     delay = random.uniform(0, max_delay)
-    # asyncio.sleep(delay)
-    # RuntimeWarning: coroutine 'sleep' was never awaited asyncio.sleep(delay)
     await asyncio.sleep(delay)
     return delay
