@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""TESTING module"""
+"""TESTING module
+parctice with parametrization
+"""
 
 from unittest import TestCase
 from parameterized import parameterized
@@ -7,7 +9,7 @@ from utils import access_nested_map
 
 
 class TestAccessNestedMap(TestCase):
-    """TEST class"""
+    """TEST class using unittest module"""
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {'b': 2}),
