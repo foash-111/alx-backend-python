@@ -3,13 +3,13 @@
 parctice with parametrization
 """
 
-from unittest import TestCase
+import unittest
 from parameterized import parameterized
 from utils import access_nested_map
 from typing import Dict, Tuple, Union
 
 
-class TestAccessNestedMap(TestCase):
+class TestAccessNestedMap(unittest.TestCase):
     """TEST class using unittest module"""
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
