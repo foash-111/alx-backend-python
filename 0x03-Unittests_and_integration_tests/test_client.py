@@ -18,9 +18,9 @@ class TestGithubOrgClient(unittest.TestCase):
         with a mocked response"""
         with patch(
                 'client.get_json', return_value=expected) as get_mock:
-            
+
             client = GithubOrgClient(org_name)
             full_url = client.ORG_URL.format(org=org_name)
-            
+
             self.assertEqual(client.org, expected)
             get_mock.assert_called_once_with(full_url)
