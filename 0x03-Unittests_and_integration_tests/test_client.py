@@ -13,12 +13,11 @@ class TestGithubOrgClient(unittest.TestCase):
         ('https://www.google.co.uk/', {'status': 200}),
         ('https://abc.com/', {'status': 201})
     ])
-    def test_org(self, url, expected):
+    @patch.object(GithubOrgClient, 'org')
+    def test_org(self, url, expected, get_mock):
         """test  the org method inside GithubOrgClient class,
         with a mocked response"""
         client = GithubOrgClient(url)
-        with patch.object(
-                GithubOrgClient, 'org',
-                return_value=expected) as get_mock:
-            self.assertEqual(client.org(), expected)
-            get_mock.assert_called_once()
+        get_mock.return_value = expected
+        self.assertEqual(client.org(), expected)
+        get_mock.assert_called_once()
