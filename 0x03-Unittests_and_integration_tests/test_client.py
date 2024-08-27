@@ -4,20 +4,23 @@ import unittest
 from unittest.mock import patch
 from client import GithubOrgClient
 from parameterized import parameterized
-from utils import get_json
+from client import get_json
 
 
 class TestGithubOrgClient(unittest.TestCase):
     """Test methods inside GithubOrgClient class"""
     @parameterized.expand([
-        ('https://www.google.co.uk/', {'status': 200}),
-        ('https://abc.com/', {'status': 201})
+        ('google', {'status': 200}),
+        ('abc', {'status': 201})
     ])
-    @patch.object(GithubOrgClient, 'org')
-    def test_org(self, url, expected, get_mock):
+    def test_org(self, org_name, expected):
         """test  the org method inside GithubOrgClient class,
         with a mocked response"""
-        client = GithubOrgClient(url)
-        get_mock.return_value = expected
-        self.assertEqual(client.org(), expected)
-        get_mock.assert_called_once()
+        with patch(
+                'client.get_json', return_value=expected) as get_mock:
+            
+            client = GithubOrgClient(org_name)
+            full_url = client.ORG_URL.format(org=org_name)
+            
+            self.assertEqual(client.org, expected)
+            get_mock.assert_called_once_with(full_url)
