@@ -32,7 +32,7 @@ class GithubOrgClient:
     def _public_repos_url(self) -> str:
         """Public repos URL"""
         return self.org["repos_url"]
-
+# This property returns the value of the "repos_url" key from the dictionary returned by the org method.
     @memoize
     def repos_payload(self) -> Dict:
         """Memoize repos payload"""

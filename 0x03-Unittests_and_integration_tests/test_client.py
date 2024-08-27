@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock
 from client import GithubOrgClient
 from parameterized import parameterized
 from client import get_json
@@ -24,3 +24,19 @@ class TestGithubOrgClient(unittest.TestCase):
 
             self.assertEqual(client.org, expected)
             get_mock.assert_called_once_with(full_url)
+
+    @parameterized.expand([
+        ('google', {'repos_url': 'https://www.google.co.uk/'}),
+        ('abc', {'repos_url': 'https://abc.com/'})
+    ])
+    def test_public_repos_url(self, org_name, expected):
+
+        with patch.object(
+                GithubOrgClient, 'org', new_callable=PropertyMock) as get_mock:
+
+            client = GithubOrgClient(org_name)
+            get_mock.return_value = expected
+            self.assertEqual(client._public_repos_url, expected['repos_url'])
+
+# new_callable=PropertyMock:
+# This tells patch.object to create a mock specifically for a property.
