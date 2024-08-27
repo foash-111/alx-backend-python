@@ -18,9 +18,11 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a",), {'b': 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
-    def test_access_nested_map(self, nested_map: Mapping,
-                                    path: Sequence,
-                                    expected: Any) -> None:
+    def test_access_nested_map(
+            self,
+            nested_map: Mapping,
+            path: Sequence,
+            expected: Any) -> None:
         """using method and test using assert equal"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
@@ -49,7 +51,6 @@ class TestGetJson(unittest.TestCase):
             self.assertEqual(result, test_payload)
 
 
-
 class TestMemoize(unittest.TestCase):
     """appllying test on memoize"""
     def test_memoize(self):
@@ -61,12 +62,12 @@ class TestMemoize(unittest.TestCase):
             @memoize
             def a_property(self):
                 return self.a_method()
-        
 
         test_case = TestClass()
 
-        with patch.object() as get_mock:
+        with patch.object(TestClass, 'a_method', return_value=42) as get_mock:
 
             self.assertEqual(test_case.a_method(), 42)
+            get_mock.assert_called_once()
 
-             # Assert that testcase.a_property was called once with test_url
+# Assert that testcase.a_property was called once with test_url
