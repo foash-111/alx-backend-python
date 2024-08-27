@@ -14,6 +14,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ('https://abc.com/', {'status': 201})
     ])
     def test_org(self, url, expected):
+        """test  the org method inside GithubOrgClient class,
+        with a mocked response"""
         client = GithubOrgClient(url)
         with patch.object(
                 GithubOrgClient, 'org',
