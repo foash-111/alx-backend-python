@@ -43,7 +43,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch('client.get_json')  # Step 1: Mock the get_json function
     def test_public_repos(self, get_mock):
-        """follow the steps, carefully"""
+        """follow the steps, carefully, mock get_json and _public_repos_url"""
         repos = [  # Step 2: Define the fake repository data
             {'name': 'google'},
             {'name': 'abc'}
