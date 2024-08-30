@@ -30,7 +30,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ('abc', {'repos_url': 'https://abc.com/'})
     ])
     def test_public_repos_url(self, org_name, expected):
-
+        """create a fake url and test it"""
         with patch.object(
                 GithubOrgClient, 'org', new_callable=PropertyMock) as get_mock:
 
